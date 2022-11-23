@@ -1,0 +1,4 @@
+#!/bin/bash
+#launch custom neofetch
+neofetch --ascii_colors 2 5 6 1 --ascii ~/.config/neofetch/tj
+
