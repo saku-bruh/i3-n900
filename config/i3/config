@@ -12,7 +12,7 @@
 #      Last updated on 11/23/2022
 
 # font
-font pango:monospace 7
+font pango:monospace 9
 
 # bordersize
 new_window 1pixel
@@ -22,18 +22,14 @@ exec_always --no-startup-id feh --bg-fill ~/Pictures/wall4.jpg
 
 # Colors
 # class                 border  backgr. text    indicator
-client.placeholder      #000000 #000000 #000000 #666666
+client.placeholder      #000000 #000000 #000000 #d95fc3
 client.background       #000000 #000000 #000000
-client.focused          #3F7ABE #000000 #CF2332 #666666 #04dc64
-client.unfocused        #1164A7 #222222 #A22330 #1164A7 #04dc64
-client.focused_inactive #222222 #222222 #a9a9a9 #666666 #04dc64
-client.urgent           #d42121 #d42121 #f7f7f7 #666666
+client.focused          #d95fc3 #000000 #d95fc3 #d95fc3 #d95fc3
+client.unfocused        #99037e #000000 #99037e #99037e #d95fc3
+client.focused_inactive #5e004d #000000 #5e004d #666666 #d95fc3
+client.urgent           #ff00d1 #000000 #ffffff #666666
 
-# Gaps size
-gaps inner 5
-gaps outer 5
-
-#workspace_layout tabbed
+# workspace_layout tabbed
 
 mode "workspace" {
         bindsym a workspace 1
@@ -48,8 +44,7 @@ mode "workspace" {
         bindsym q mode "command"
 }
 
-# Control the music player daemon. Keybindings are roughly the same as in
-# the ncmpcpp client.
+# Control the music player daemon. Keybindings are roughly the same as in the ncmpcpp client.
 mode "mpd" {
         bindsym p exec mpc toggle
         bindsym s exec mpc stop
@@ -59,13 +54,12 @@ mode "mpd" {
         bindsym Up exec mpc vol +2
         bindsym Down exec mpc vol -2
 
-        bindsym n exec st -f "Liberation Mono-12" -e ncmpcpp; mode "default"
+        bindsym n exec st -f "Liberation Mono-10" -e ncmpcpp; mode "default"
         bindsym q mode "command"
 }
 
 mode "command" {
-        bindsym t exec st -f "Liberation Mono-12"
-        bindsym y exec st -f "Liberation Mono-10"
+        bindsym t exec st -f "Liberation Mono-10"
         bindsym d exec dmenu_run; mode "default"
         bindsym q mode "default"
         bindsym f fullscreen
@@ -88,35 +82,44 @@ mode "command" {
 
         bindsym w mode "workspace"
         bindsym m mode "mpd"
+
+# Right Click
+        bindsym XF86WebCam xdotool click 3 
+
+# Shortcuts for techy/hacky cool-looking stuff
+        bindsym o exec st cmatrix
+        bindsym p exec st gotop
 }
 
 # Enter command mode
 bindsym Shift+space mode "command"
 
-# This is the slidey button on the side of the device
+# Alternate key for exiting command mode
+
+# This is the sliding button on the side of the device,
 bindsym XF86ScreenSaver exec --no-startup-id lock.sh
 
-# Pressing the power button on the top suspends the device
+# Pressing the power button on the top suspends the device,
 bindsym XF86PowerOff exec --no-startup-id sudo pm-suspend
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         position top
-        font pango:DejaVu Sans Mono 13
+        font pango:DejaVu Sans Mono 10
         status_command i3blocks
         colors {
                 background #000000
-                statusline #04dc64
-                separator #009900
-                focused_workspace #04dc64 #000000 #04dc64
-                inactive_workspace #000000 #04dc64 #000000
-                urgent_workspace #990000 #990000 #fffff
+                statusline #d95fc3
+                separator #99037e
+                focused_workspace #d95fc3 #000000 #d95fc3
+                inactive_workspace #000000 #d95fc3 #000000
+                urgent_workspace #ff00d1 #ff00d1 #fffff
         }
 }
 
 # Hide mouse cursor
 exec --no-startup-id unclutter-xfixes --fork
 
-# Conky (Disabled by Default)
+# Conky (Disabled)
 # exec --no-startup-id conky --daemonize
